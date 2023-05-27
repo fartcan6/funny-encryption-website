@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>the best encryptor!!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    body {
+      background-color: #ffe5d9;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #663300;
+      text-align: center;
+    }
+
+    label {
+      color: #663300;
+      font-weight: bold;
+    }
+
+    .container {
+      margin: 20px auto;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #f8f0e8;
+      border: 2px solid #663300;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .input-output-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .input-output-container textarea {
+      resize: none;
+      border: 2px solid #663300;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #663300;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .copy-button {
+      background-color: #663300;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .about-container {
+      background-color: #f8f0e8;
+      border: 2px solid #663300;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+
+    code {
+      background-color: #f8f0e8;
+      padding: 2px 4px;
+      border: 1px solid #663300;
+      color: #663300;
+    }
+
+    /* Adjustments for mobile devices */
+    @media only screen and (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+
+      .input-output-container {
+        flex-direction: column;
+      }
+
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        margin-bottom: 10px;
+      }
+    }
+	
+    .social-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .social-links img {
+      width: 24px;
+      height: 24px;
+      margin: 0 5px;
+      border-radius: 5px;
+    }
+
+  </style>
+
+  <script>
+    // Encryption function
+    function encryptText() {
+      var plaintext = document.getElementById("plaintext").value;
+      var encryptedText = btoa(plaintext);
+      document.getElementById("ciphertext").value = encryptedText;
+    }
+
+    // Decryption function
+    function decryptText() {
+      var ciphertext = document.getElementById("ciphertext").value;
+      var decryptedText = atob(ciphertext);
+      document.getElementById("plaintext").value = decryptedText;
+    }
+
+    // Save function
+    function saveText() {
+      var ciphertext = document.getElementById("ciphertext").value;
+      var blob = new Blob([ciphertext], { type: "text/plain;charset=utf-8" });
+      saveAs(blob, "encrypted_text.txt");
+    }
+
+    // Copy to clipboard function
+    function copyToClipboard() {
+      var copyText = document.getElementById("ciphertext");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand("copy");
+      alert("Copied to clipboard: " + copyText.value);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>funny encrypter</h1>
+    <div class="input-output-container">
+      <div style="flex: 1;">
+        <label for="plaintext">Enter text:</label>
+        <br>
+        <textarea id="plaintext" rows="5"></textarea>
+      </div>
+      <div style="flex: 1;">
+        <label for="ciphertext">Encrypted text:</label>
+        <br>
+        <textarea id="ciphertext" rows="5" readonly></textarea>
+      </div>
+    </div>
+    <div class="button-container">
+      <button onclick="encryptText()">Encrypt</button>
+      <button onclick="decryptText()">Decrypt</button>
+      <button onclick="saveText()">Save</button>
+      <button onclick="copyToClipboard()" class="copy-button">Copy to Clipboard</button>
+    </div>
+	<div class="social-links">
+      <a href="https://github.com/fartcan6"><img src="github.png" alt="GitHub"></a>
+      <a href="https://youtube.com/@EpicGangsta.6959"><img src="yr.png" alt="Youtube"></a>
+    <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #663300;">&copy; 2023 fartcan6. All rights reserved.</p>
+  </div>
+  </div>
+
+  <div class="about-container">
+    <h2>About Encryption</h2>
+    <p>Encryption is a process of encoding information in such a way that only authorized parties can access and read it. It is commonly used to protect sensitive data, ensuring its confidentiality and integrity.</p>
+    <p>In this Encryption tool, the encryption function uses the <code>btoa()</code> method to encode the input text, and the decryption function uses the <code>atob()</code> method to decode the ciphertext back to the original plaintext.</p>
+    <h3>How Decryption Works and Its Dangers</h3>
+    <p>Decryption is the reverse process of encryption, where the encrypted data is transformed back into its original form using a decryption key. While encryption is a crucial tool for data protection, it's important to be aware of potential dangers associated with decryption:</p>
+    <ul>
+      <li>Ransomware: Cybercriminals can use encryption techniques to develop malicious software, such as ransomware, that encrypts victims' files and demands payment for decryption.</li>
+      <li>Data Breaches: Encrypted data is vulnerable to data breaches if the encryption keys are compromised or weak. Strong key management practices are essential to prevent unauthorized access.</li>
+      <li>Government Surveillance: In some cases, governments may attempt to decrypt encrypted communications or gain access to encrypted data for law enforcement or intelligence purposes, raising concerns about privacy and security.</li>
+      <li>Technical Limitations: Decryption may not always be possible if the encryption algorithm is strong and the key is secure. Brute-forcing or breaking strong encryption can be computationally infeasible.</li>
+    </ul>
+  </div>
+</body>
+</html>
