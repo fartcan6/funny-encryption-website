@@ -121,20 +121,23 @@
   </style>
 
   <script>
-    // Encryption function
-    function encryptText() {
-      var plaintext = document.getElementById("plaintext").value;
-      var encryptedText = btoa(plaintext);
-      document.getElementById("ciphertext").value = encryptedText;
-    }
+ function encryptText() {
+        var plaintext = document.getElementById("plaintext").value;
+        var encryptedText = btoa(plaintext);
+        document.getElementById("ciphertext").value = encryptedText;
+      }
 
-    // Decryption function
-    function decryptText() {
-      var ciphertext = document.getElementById("ciphertext").value;
-      var decryptedText = atob(ciphertext);
-      document.getElementById("plaintext").value = decryptedText;
-    }
-
+      // Decryption function
+      function decryptText() {
+        var ciphertext = document.getElementById("ciphertext").value;
+        if (ciphertext) {
+          var decryptedText = atob(ciphertext);
+          document.getElementById("plaintext").value = decryptedText;
+        } else {
+          alert("No ciphertext to decrypt.");
+        }
+      }
+	  
     // Save function
     function saveText() {
       var ciphertext = document.getElementById("ciphertext").value;
